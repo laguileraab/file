@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Property>
+        <Property name="APP_LOG_ROOT">./log</Property>
+    </Properties>
+
+    <Appenders>
+
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+
+        <RollingFile name="alfresco" fileName="${sys:APP_LOG_ROOT}/alfresco.log" filePattern="${sys:APP_LOG_ROOT}/alfresco-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.dev.api.controllers.AuthController" additivity="false" level="debug">
+            <AppenderRef ref="auth" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.security.jwt.JwtUtils" additivity="false" level="debug">
+            <AppenderRef ref="auth" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.security.jwt.AuthTokenFilter" additivity="false" level="debug">
+            <AppenderRef ref="auth" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.security.jwt.AuthEntryPointJwt" additivity="false" level="debug">
+            <AppenderRef ref="auth" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.controllers.ClienteController" additivity="false" level="debug">
+            <AppenderRef ref="clientes" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.exceptions.ClienteExceptionHandler" additivity="false" level="debug">
+            <AppenderRef ref="clientes" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.controllers.VentaController" additivity="false" level="debug">
+            <AppenderRef ref="ventas" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.exceptions.VentaExceptionHandler" additivity="false" level="debug">
+            <AppenderRef ref="ventas" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.controllers.ProductoController" additivity="false" level="debug">
+            <AppenderRef ref="productos" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="com.dev.api.exceptions.ProductoExceptionHandler" additivity="false" level="debug">
+            <AppenderRef ref="productos" />
+            <AppenderRef ref="console" />
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="console" />
+        </Root>
+
+    </Loggers>
+
+</Configuration>
