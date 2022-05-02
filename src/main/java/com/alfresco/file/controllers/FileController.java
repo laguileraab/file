@@ -40,7 +40,7 @@ public class FileController {
     FileService fileService;
 
     @GetMapping("/{id}/info")
-    public ResponseEntity<Node> getNode(String id) throws MalformedURLException, IOException {
+    public ResponseEntity<Node> getNode(@Valid @PathVariable String id) throws MalformedURLException, IOException {
         Node node = fileService.getNode(id);
         return ResponseEntity.ok()
                 .body(node);
