@@ -65,8 +65,10 @@ public class FileController {
     }
 
     @GetMapping("/url/{id}/versions")
-    public void getVersions(@Valid @PathVariable String id){
-      // TODO implement get versions of file
+    public String getVersions(@Valid @PathVariable String id)
+            throws MalformedURLException, IOException {
+        FileController.log.info("Downloading file {}...", id);
+        return Constants.URL + Constants.NODE + "/" + fileService.downloadFileURL(id) + Constants.CONTENT;
     }
 
     @ResponseStatus(HttpStatus.CREATED)

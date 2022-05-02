@@ -66,7 +66,7 @@ public class FileController {
 
     @GetMapping("/url/{id}/versions")
     public void getVersions(@Valid @PathVariable String id){
-      // TODO implement get versions of file
+      // 
     }
 
     @ResponseStatus(HttpStatus.CREATED)
